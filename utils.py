@@ -17,7 +17,7 @@ def plot_spk_rec(spk_rec, idx):
     nb_plt = len(idx)
     d = int(np.sqrt(nb_plt))
     gs = GridSpec(d,d)
-    fig= plt.figure(figsize=(30,20),dpi=150)
+    fig= plt.figure(figsize=(10,7),dpi=300)
     for i in range(nb_plt):
         plt.subplot(gs[i])
         plt.imshow(spk_rec[idx[i]].T,cmap=plt.cm.gray_r, origin="lower", aspect='auto')
@@ -33,7 +33,7 @@ def plot_mem_rec(mem, idx):
     dim = (d, d)
     
     gs=GridSpec(*dim)
-    plt.figure(figsize=(30,20))
+    plt.figure(figsize=(10,7))
     dat = mem[idx]
         
     for i in range(nb_plt):
