@@ -9,7 +9,7 @@ Original file is located at
 # Spiking neural networks for traffic classification
 """
 
-#!git clone https://github.com/romainzimmer/s2net
+!git clone https://github.com/romainzimmer/s2net
 
 """# Loading Data"""
 
@@ -48,7 +48,7 @@ class FlowChunkDataset(Dataset):
             sample = self.items[i]
             label = torch.randint(0, NUM_LABELS-1, (1,))
             for j in range(T_BIN_SIZE):
-                packets_size_received = torch.normal(200*label.item(), 25, size=(1, 200)) # 200 random packets received
+                packets_size_received = torch.normal(100*label.item(), 25, size=(1, 200)) # 200 random packets received
                 hist = torch.histc (packets_size_received, bins = S_BIN_SIZE, min=0, max = 1400)
                 sample[:,j] = hist
             self.label[i] = label
@@ -144,7 +144,7 @@ snn = SNN(layers).to(device, dtype)
 """# Training and plotting"""
 
 nb_plt = 9
-"""
+
 batch_idx = [0]
 # Plotting spike trains or membrane potential
 for i,l in enumerate(snn.layers):
@@ -158,7 +158,6 @@ for i,l in enumerate(snn.layers):
     else:
         mem_rec = l.mem_rec_hist
         plot_mem_rec(mem_rec, batch_idx)
-"""
 
 def train(model, params, optimizer, train_dataloader, valid_dataloader, reg_loss_coef, nb_epochs, scheduler=None, warmup_epochs=0):
     
